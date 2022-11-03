@@ -38,7 +38,7 @@ public abstract class ExampleBase implements IExample
             }
             catch (InputMismatchException e)
             {
-                System.out.println("Podany ciag znakow nie jest liczba!");
+                System.out.println("Podany ciag znakow nie zostal rozpoznany jako liczba!");
 
                 if (_scanner.hasNext())
                     _scanner.nextLine();
@@ -50,7 +50,7 @@ public abstract class ExampleBase implements IExample
         String response = null;
         do {
             if (response != null)
-                System.out.println("Udzielona odpowiedz nie jest poprawna prawidlowa.");
+                System.out.println("Udzielona odpowiedz nie jest prawidlowa.");
 
             response =  getStringPrompt(prompt + "? (T/N)");
         } while (!response.equals("T") && !response.equals("N"));
