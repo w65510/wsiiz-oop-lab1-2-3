@@ -3,6 +3,12 @@ import Examples.Lab1.*;
 import Examples.Lab2.*;
 import Examples.Lab3.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.Enumeration;
 import java.util.Scanner;
 
 public class Main
@@ -19,39 +25,60 @@ public class Main
 
     private static void beginExamples()
     {
+        try
+        {
+            var examples = ExamplesScanner.getAllExamples(_scanner);
+
+            for (var example : examples)
+            {
+                if (!example.isEnabled())
+                    continue;
+
+                System.out.println("Lab " + example.getLabNumber() + ", Zadanie " + example.getExampleNumber());
+                example.begin();
+                System.out.println();
+            }
+        }
+        catch(Exception e)
+        {
+            // Ignore
+        }
+
+
+
         // Aby wyłączyć któreś zadanie, wystarczy w nim ustawić isEnabled na false, albo zakomentować je w tablicy
         // Wszystkie zadania są włączone, więc uruchomienie programu spowoduje uruchomienie wszystkich zadań
         // Jedno po drugim
-        var examples = new IExample[] {
-                new Lab1Example1(_scanner),
-                new Lab1Example2(_scanner),
-                new Lab1Example3(_scanner),
-                new Lab1Example4(_scanner),
-                new Lab1Example5(_scanner),
-                new Lab1Example6(_scanner),
-                new Lab1Example7(_scanner),
-                new Lab2Example1(_scanner),
-                new Lab2Example2(_scanner),
-                new Lab2Example3(_scanner),
-                new Lab2Example4(_scanner),
-                new Lab2Example5(_scanner),
-                new Lab2Example6(_scanner),
-                new Lab3Example1(_scanner),
-                new Lab3Example2(_scanner),
-                new Lab3Example3(_scanner),
-                new Lab3Example4(_scanner),
-                new Lab3Example5(_scanner)
-        };
-
-        for (var example : examples)
-        {
-            if (!example.isEnabled())
-                continue;
-
-            System.out.println("Lab " + example.getLabNumber() + ", Zadanie " + example.getExampleNumber());
-            example.begin();
-            System.out.println();
-        }
+//        var examples = new IExample[]{
+//                new Lab1Example1(_scanner),
+//                new Lab1Example2(_scanner),
+//                new Lab1Example3(_scanner),
+//                new Lab1Example4(_scanner),
+//                new Lab1Example5(_scanner),
+//                new Lab1Example6(_scanner),
+//                new Lab1Example7(_scanner),
+//                new Lab2Example1(_scanner),
+//                new Lab2Example2(_scanner),
+//                new Lab2Example3(_scanner),
+//                new Lab2Example4(_scanner),
+//                new Lab2Example5(_scanner),
+//                new Lab2Example6(_scanner),
+//                new Lab3Example1(_scanner),
+//                new Lab3Example2(_scanner),
+//                new Lab3Example3(_scanner),
+//                new Lab3Example4(_scanner),
+//                new Lab3Example5(_scanner)
+//        };
+//
+//        for (var example : examples)
+//        {
+//            if (!example.isEnabled())
+//                continue;
+//
+//            System.out.println("Lab " + example.getLabNumber() + ", Zadanie " + example.getExampleNumber());
+//            example.begin();
+//            System.out.println();
+//        }
     }
 
     private static void greetUser()

@@ -41,6 +41,6 @@ public class Lab2Example3 extends ExampleBase {
 
     @Override
     public Boolean isEnabled() {
-        return true;
+        return false;
     }
 }
