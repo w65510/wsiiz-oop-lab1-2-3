@@ -31,7 +31,7 @@ public class ExamplesScanner
 
             var constructor = exClass.getConstructor(Scanner.class);
 
-            IExample example = (IExample) constructor.newInstance(_scanner);;
+            IExample example = (IExample) constructor.newInstance(_scanner);
             exampleList.add(example);
         }
 
