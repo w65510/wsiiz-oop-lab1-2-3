@@ -10,9 +10,7 @@ public class Lab3Example3 extends ExampleBase {
     @Override
     public void begin() {
         System.out.println("Zliczymy ile liczb w ciagu jest parzystych oraz ich sume.");
-        var sequenceLen = getSeqLen();
-
-        var sequence = getSequence(sequenceLen);
+        var sequence = getSequence();
 
         showAmountAndCount(sequence);
     }
