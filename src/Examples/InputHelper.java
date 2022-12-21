@@ -155,7 +155,22 @@ public class InputHelper
     }
 
     public String getStringPrompt(String prompt) {
+        return getStringPrompt(prompt, Optional.ofNullable(null));
+    }
+
+    public String getStringPrompt(String prompt, Optional<Predicate<String>> predicate) {
+        do
+        {
         System.out.print(prompt + ": ");
-        return _scanner.nextLine();
+        var response = _scanner.nextLine();
+
+        if (!predicate.isPresent())
+            return response;
+
+        if (predicate.get().test(response))
+            return response;
+
+        System.out.println("Podany ciąg znaków jest niepoprawny w obecnym kontekście.");
+        } while (true);
     }
 }
