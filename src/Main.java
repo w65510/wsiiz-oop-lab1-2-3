@@ -34,12 +34,13 @@ public class Main
 
     private static void showMenu()
     {
-        List<Integer> allowedValues = new ArrayList<>(Arrays.asList(1, 2, 3));
+        List<Integer> allowedValues = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
 
         System.out.println("Co chcesz zrobić?");
         System.out.println("\n1. Uruchom wszystkie zadania");
         System.out.println("2. Uruchom wszystkie włączone zadania");
-        System.out.println("3. Wybierz zadanie\n");
+        System.out.println("3. Wybierz zadanie");
+        System.out.println("4. Najnowsze zadanie\n");
 
         var choice = _inputHelper.getIntPrompt("Wybor", Optional.of(x -> allowedValues.contains(x)));
         System.out.println();
@@ -48,7 +49,19 @@ public class Main
             case 1 -> runExamples(false);
             case 2 -> runExamples(true);
             case 3 -> chooseLab();
+            case 4 -> newestExample();
         }
+    }
+
+    private static void newestExample()
+    {
+        var maxLab = _examples.stream().map(x -> x.getLabNumber()).max(Integer::compareTo).orElse(0);
+        _examples = _examples.stream().filter(x -> x.getLabNumber() == maxLab).collect(Collectors.toList());
+
+        var maxExample = _examples.stream().map(x -> x.getExampleNumber()).max(Integer::compareTo).orElse(0);
+        var example = _examples.stream().filter(x -> x.getExampleNumber() == maxExample).findFirst().orElse(null);
+
+        example.begin();
     }
 
     private static void chooseLab()
