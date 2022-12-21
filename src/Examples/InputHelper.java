@@ -43,11 +43,18 @@ public class InputHelper
         for (int i = 0; i < sequenceLen; i++)
         {
             sequence[i] = random.nextInt(min, max+1);
-            System.out.print(sequence[i] + " ");
         }
-        System.out.println("\n");
+        showSequence(sequence);
+        System.out.println();
 
         return sequence;
+    }
+
+    protected void showSequence(int[] sequence) {
+        for (var value : sequence)
+            System.out.print(value + " ");
+
+        System.out.println();
     }
 
     protected int[] getSequence() {
