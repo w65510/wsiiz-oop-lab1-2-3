@@ -58,16 +58,26 @@ public class InputHelper
     }
 
     protected int[] getSequence() {
+
+        return getSequence(Optional.ofNullable(null));
+    }
+
+    protected int[] getSequence(Optional<Predicate<Integer>> predicate) {
         var sequenceLen = getSeqLen();
 
-        return getSequence(sequenceLen);
+        return getSequence(sequenceLen, predicate);
     }
 
     protected int[] getSequence(int sequenceLen)
     {
+        return getSequence(sequenceLen, Optional.ofNullable(null));
+    }
+
+    protected int[] getSequence(int sequenceLen, Optional<Predicate<Integer>> predicate)
+    {
         var sequence = new int[sequenceLen];
         for (int i = 0; i < sequenceLen; i++)
-            sequence[i] = getIntPrompt("Podaj " + (i + 1) + " liczbe z sekwencji");
+            sequence[i] = getIntPrompt("Podaj " + (i + 1) + " liczbe z sekwencji", predicate);
 
         return sequence;
     }
