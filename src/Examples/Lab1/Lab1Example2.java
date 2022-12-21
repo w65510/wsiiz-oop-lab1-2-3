@@ -48,3 +48,4 @@ public class Lab1Example2 extends ExampleBase
         return false;
     }
 }
+

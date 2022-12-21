@@ -2,6 +2,7 @@ package Examples;
 
 import java.util.InputMismatchException;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
@@ -12,6 +13,43 @@ public class InputHelper
     public InputHelper(Scanner scanner)
     {
         _scanner = scanner;
+    }
+
+    protected int getSeqLen() {
+        var len = getIntPrompt("Ile liczb ma sie znalezc w ciagu? (1-20)", Optional.of(x -> x > 0 && x <= 20));
+
+        return len;
+    }
+
+    protected int[] generateSequence(int sequenceLen){
+        var min = getIntPrompt("Podaj minimalną wartość w generowanej sekwencji");
+        var max = getIntPrompt("Podaj maksymalną wartość w generowanej sekwencji (nie mniejsza niż " + min + ")", Optional.of(x -> x >= min));
+
+        return generateSequence(sequenceLen, min, max);
+    }
+
+    protected int[] generateSequence(int sequenceLen, int min, int max){
+        var random = new Random();
+        var sequence = new int[sequenceLen];
+
+        System.out.println("Wygenerowane liczby to:");
+        for (int i = 0; i < sequenceLen; i++)
+        {
+            sequence[i] = random.nextInt(min, max+1);
+            System.out.print(sequence[i] + " ");
+        }
+        System.out.println();
+
+        return sequence;
+    }
+
+    protected int[] getSequence(int sequenceLen)
+    {
+        var sequence = new int[sequenceLen];
+        for (int i = 0; i < sequenceLen; i++)
+            sequence[i] = getIntPrompt("Podaj " + (i + 1) + " liczbe z sekwencji");
+
+        return sequence;
     }
 
     public int getIntPrompt(String prompt) {

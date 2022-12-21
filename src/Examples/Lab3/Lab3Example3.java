@@ -12,9 +12,7 @@ public class Lab3Example3 extends ExampleBase {
         System.out.println("Zliczymy ile liczb w ciagu jest parzystych oraz ich sume.");
         var sequenceLen = getSeqLen();
 
-        var sequence = new int[sequenceLen];
-        for (int i = 0; i < sequenceLen; i++)
-            sequence[i] = getIntPrompt("Podaj " + (i+1) + " liczbe z sekwencji");
+        var sequence = getSequence(sequenceLen);
 
         showAmountAndCount(sequence);
     }
@@ -31,17 +29,6 @@ public class Lab3Example3 extends ExampleBase {
         }
 
         System.out.println("W ciagu znalazlo sie " + amount + " liczb parzystych, a ich suma to " + sum);
-    }
-
-    protected int getSeqLen() {
-        while (true){
-            var len = getIntPrompt("Ile liczb ma sie znalezc w ciagu? (1-20)");
-
-            if (len > 0 && len <= 20)
-                return len;
-
-            System.out.println("Podana liczba jest niepoprawna.");
-        }
     }
 
     @Override

@@ -12,15 +12,7 @@ public class Lab3Example4 extends Lab3Example3 {
         System.out.println("Ciag wypelni sie losowymi liczbami z przedzialu (-10, 45).");
         var sequenceLen = getSeqLen();
 
-        var random = new Random();
-        var sequence = new int[sequenceLen];
-        System.out.println("Wygenerowane liczby to:");
-        for (int i = 0; i < sequenceLen; i++)
-        {
-            sequence[i] = random.nextInt(-10, 46);
-            System.out.print(sequence[i] + " ");
-        }
-        System.out.println();
+        var sequence = generateSequence(sequenceLen, -10, 45);
 
         showAmountAndCount(sequence); // wywolanie algorytmu z zadania 3
     }
