@@ -21,9 +21,16 @@ public class InputHelper
         return len;
     }
 
-    protected int[] generateSequence(int sequenceLen){
+    protected int[] generateSequence() {
+        var sequenceLen = getSeqLen();
+
+        return generateSequence(sequenceLen);
+    }
+
+    protected int[] generateSequence(int sequenceLen) {
         var min = getIntPrompt("Podaj minimalną wartość w generowanej sekwencji");
         var max = getIntPrompt("Podaj maksymalną wartość w generowanej sekwencji (nie mniejsza niż " + min + ")", Optional.of(x -> x >= min));
+        System.out.println();
 
         return generateSequence(sequenceLen, min, max);
     }
@@ -38,9 +45,15 @@ public class InputHelper
             sequence[i] = random.nextInt(min, max+1);
             System.out.print(sequence[i] + " ");
         }
-        System.out.println();
+        System.out.println("\n");
 
         return sequence;
+    }
+
+    protected int[] getSequence() {
+        var sequenceLen = getSeqLen();
+
+        return getSequence(sequenceLen);
     }
 
     protected int[] getSequence(int sequenceLen)
